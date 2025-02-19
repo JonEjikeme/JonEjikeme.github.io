@@ -5,9 +5,9 @@ layout: post
 sitemap: false
 ---
 
-<img src="/assets/img/portfolio/proxy/dashboard.png" alt="Dashboard">
-
 # Securing IT Infrastructure with Traefik Reverse&nbsp;Proxy
+
+<img src="/assets/img/portfolio/proxy/dashboard.png" alt="Dashboard">
 
 
 Reverse proxies are important tools to have when securing IT infrastructure. It acts as a barrier between clients and application servers. Proxies are notably known for their ability to speed up web traffic through the use of caching, load balancing, and routing. In this post, I will be demonstrating the traefik reverse proxy.
@@ -66,7 +66,7 @@ Instead of the HTTP challenge, I used the DNS challenge, which requires providin
 
 With this setup, I can now encrypt and securely route traffic for any services running on my local infrastructure. Below is a crt.sh query to verify the SHA-256 fingerprint of my domain certificates.
 
-<img src="/assets/img/portfolio/cert.png" alt="certificate">
+<img src="/assets/img/portfolio/proxy/cert.png" alt="certificate">
 
 
 ## Traefik Dashboard & Security Enhancements
