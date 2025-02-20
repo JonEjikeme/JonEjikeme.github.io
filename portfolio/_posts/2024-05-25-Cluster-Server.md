@@ -22,17 +22,17 @@ A docker swarm cluster consists of:
 
 <ul>
 
-	<li> Manager nodes - handling cluster management tasks such as scheduling services and maintaining the overall state of the system.</li>
-	<li> Worker nodes - Nodes that carry out tasks and run the containers.</li>
+	<li>Manager nodes: handling cluster management tasks such as scheduling services and maintaining the overall state of the system.</li>
+	<li>Worker nodes: Nodes that carry out tasks and run the containers.</li>
 </ul>
 
 
 Manager nodes can also be worker nodes, in my case this is what I am doing.
 
 
-### Overlay network
+### Overlay Network
 
-An overlay network is a virtual network that sits on top of the physical network interface. By having each node sitting on the same overlay network, services are able to communicate reagardless of their physical location.
+An overlay network is a virtual network that sits on top of the physical network interface. By having each node sitting on the same overlay network, services are able to communicate regardless of their physical location.
 
 
 ## Hardware
@@ -65,17 +65,24 @@ On the worker nodes we run:
 docker swarm join --token <token> <manager_node_ip>:2377
 ```
 
-With just these commands, the cluster is up and running. All devices are a part of the 
+With just these commands, the cluster is up and running. All devices are a part of the Swarm, ready to deploy and manage services seamlessly.
 
 
 ## Security
 
-Cybersecurity is a multifaceted endeavor—securing a system requires vigilance at every level. The best approach depends on the system’s specific implementation, with various strategies to consider. Below are some of the key security configurations I implemented for the Raspberry Pi system.
+Cybersecurity is a multifaceted endeavor&mdash;securing a system requires vigilance at every level. The best approach depends on the system’s specific implementation, with various strategies to consider. Below are some of the key security configurations I implemented for the Raspberry Pi system.
 
-### Require Root Password
+### Requiring a Root Password
 
 When I first configured a Raspberry Pi system, I was surprised to find that it does not require a root password for sudo commands. As security practitioners, we recognize this as a significant security risk—any user with access to the system can easily escalate their privileges. Since the Raspberry Pi is designed to be beginner-friendly, I assume this decision was made to simplify usability.
-However, for security reasons, I changed this default behavior. To do so, I modified the sudoers configuration by navigating to the /etc/sudoers.d directory and changing the line: 
+However, for security reasons, I changed this default behavior. To do so, I modified the sudoers configuration by navigating to the /etc/sudoers.d directory.
+
+```
+sudo nano /etc/sudoers.d 
+```
+
+From here, I changed the following line from 
+
 ```
 pi ALL=(ALL) NOPASSWD: ALL 
 ```
@@ -100,9 +107,8 @@ This file offers a wide range of configurable options, allowing for fine-tuned a
 ## NFS Server
 
 To share configuration files across all nodes in the cluster, I decided to implement a Network File System (NFS) server. NFS is a protocol that enables file sharing between computers, similar to the SMB protocol in Windows. In this setup, the NFS server is hosted on the second node.
-I also utilized AutoFS, a program that automatically mounts file systems when accessed and can be configured to unmount them after a specified period of inactivity. This feature helps mitigate potential issues related to improper mounting of the file system.
-
+I also utilized AutoFS, a program that automatically mounts file systems when accessed and can be configured to unmount them after a specified period of inactivity. AutoFS is useful because it prevents stale NFS mounts by dynamically mounting only when accessed, reducing unnecessary resource usage.
 
 ## Conclusion
 
-This project has been an invaluable learning experience. It has allowed me to deepen my understanding of high availability systems, redundancy, and fault tolerance. The simplicity of Docker Swarm suited my small-scale environment perfectly, while the Raspberry Pi provided an accessible and powerful platform for experimentation. Moving forward, I feel more confident in applying these principles to larger, more complex systems, andI look forward to expanding the number of services I will run on the cluster.
+This project has been an invaluable learning experience. It has allowed me to deepen my understanding of high availability systems, redundancy, and fault tolerance. The simplicity of Docker Swarm suited my small-scale environment perfectly, while the Raspberry Pi provided an accessible and powerful platform for experimentation. Moving forward, I feel more confident in applying these principles to larger, more complex systems, and I look forward to expanding the number of services I will run on the cluster.

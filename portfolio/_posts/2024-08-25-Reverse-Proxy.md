@@ -10,18 +10,18 @@ sitemap: false
 <img src="/assets/img/portfolio/proxy/dashboard.png" alt="Dashboard">
 
 
-Reverse proxies are important tools to have when securing IT infrastructure. It acts as a barrier between clients and application servers. Proxies are notably known for their ability to speed up web traffic through the use of caching, load balancing, and routing. In this post, I will be demonstrating the traefik reverse proxy.
+Reverse proxies are important tools to have when securing IT infrastructure. They act as a barrier between clients and application servers. Proxies are notably known for their ability to speed up web traffic through the use of caching, load balancing, and routing. In this post, I will be demonstrating the traefik reverse proxy.
 
 ## What is Traefik
 
 Traefik is a modern reverse proxy and load balancer designed for dynamic service discovery, making it an ideal choice for containerized applications. Unlike traditional proxies that require manual configuration, Traefik can automatically detect and route traffic to new services as they come online.
 
-## Why I Chose Traefik?
+## Why I Chose Traefik
 
 <ul> 
-    <li>Seamless Docker integration – Since Traefik can run as a Docker container, it integrates well with my Docker Swarm environment.</li>
-    <li>Automatic service discovery – No need to manually update configurations when deploying new services.</li>
-    <li>Built-in SSL/TLS management – Traefik integrates with Let’s Encrypt to automatically issue and renew SSL certificates.</li>
+    <li>Seamless Docker integration: Since Traefik can run as a Docker container, it integrates well with my Docker Swarm environment.</li>
+    <li>Automatic service discovery: No need to manually update configurations when deploying new services.</li>
+    <li>Built-in SSL/TLS management: Traefik integrates with Let’s Encrypt to automatically issue and renew SSL certificates.</li>
 </ul>
 
 
@@ -34,7 +34,6 @@ While I will cover key parts of the Traefik configuration, the full docker-compo
 
 For a web application, Traefik requires at least two entry points:
 
-
 <ul> 
     <li>Port 80 (HTTP) – Used for incoming unencrypted traffic.</li>
     <li>Port 443 (HTTPS) – Used for encrypted traffic.</li>
@@ -44,7 +43,7 @@ To enforce encryption, I configured Traefik to automatically redirect all HTTP r
 
 ## SSL/TLS Certificates with Let’s Encrypt
 
-One of the most powerful features of Traefik is its ability to automatically obtain and renew SSL/TLS certificates using Let’s Encrypt. Traefik stores these certificates in a JSON file for easy management.
+One of the most powerful features of Traefik is its ability to automatically obtain and renew SSL/TLS certificates using <a href="https://letsencrypt.org/about/" target="_blank">Let’s Encrypt</a>. Traefik stores these certificates in a JSON file for easy management.
 
 ### Verifying Domain Ownership
 

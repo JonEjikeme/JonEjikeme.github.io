@@ -11,7 +11,7 @@ sitemap: false
 
 
 
-System monitoring is a crucial aspect of managing any IT infrastructure.Whether for predictive analytics, reporting, or security monitoring, having access to real-time server metrics ensures system reliability and performance. In this post I will walk through the tools I use to manage my Docker Swarm cluster. These tools focus on container orchestration, system monitoring, and cluster visualization.
+System monitoring is a crucial aspect of managing any IT infrastructure. Whether for predictive analytics, reporting, or security monitoring, having access to real-time server metrics ensures system reliability and performance. In this post I will walk through the tools I use to manage my Docker Swarm cluster. These tools focus on container orchestration, system monitoring, and cluster visualization.
 
 ## Container Management with Portainer
 
@@ -20,9 +20,9 @@ There are numerous tools available for monitoring and managing containerized env
 Portainer can be used in both self-hosted environments and cloud platforms like AWS and Azure. For a Docker Swarm cluster, the deployment consists of:
 
 <ol>
-<li>Portainer Server – Runs on the Swarm manager node and provides the UI.
+<li>Portainer Server: Runs on the Swarm manager node and provides the UI.
 </li>
-<li>Portainer Agent – Runs on each worker node, allowing the server to communicate with them and manage services across the cluster.</li>    
+<li>Portainer Agent: Runs on each worker node, allowing the server to communicate with them and manage services across the cluster.</li>    
 </ol>
 
 The agent listens on a specified port and relays data back to the Portainer server, ensuring a unified management interface across all nodes.
@@ -51,9 +51,9 @@ Since my services are running behind the Traefik reverse proxy, I had to expose 
 
 ```
 
-Ports:
+ports:
      - target:1138
-       Published:1138 #Expose metrics port on the host
+       published:1138 #Expose metrics port on the host
        protocol: tcp
        mode: host	
 
@@ -81,14 +81,13 @@ Once Prometheus was set up to scrape data, I needed a way to visualize and inter
 <li>Integration with multiple data sources, including SQL databases, Elasticsearch, and cloud monitoring services</li>
 </ul>
 
-### Configuration & Deployment
+### Configuration and Deployment
 
 Setting up Grafana in my docker-compose.yml file was straightforward. I simply:
 
 
 <ol>
 <li>Defined the domain URL for Grafana</li>
-<li>Flexible query options using PromQL (Prometheus Query Language)</li>
 <li>Mounted the necessary config and data volumes</li>
 <li>Routed traffic through Traefik for secure access
 </li>
